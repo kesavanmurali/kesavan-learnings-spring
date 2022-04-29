@@ -1,16 +1,15 @@
 package com.kesavan.spring.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
+@ToString
 @Getter
-public class Book {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,18 +17,14 @@ public class Book {
 
     @Column
     private String name;
-    public Book(String name) {
+
+    @Column
+    private String location;
+
+    public Publisher(String name, String location){
         this.name = name;
+        this.location = location;
     }
-
-
-
-    /*
-    @ManyToMany
-    @JoinTable(name = "author_books", joinColumns= @JoinColumn(name="book_id"),
-                inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
-    */
 
     @Override
     public boolean equals(Object obj) {
@@ -42,7 +37,7 @@ public class Book {
             return false;
         }
 
-        Book obj2 = (Book) obj;
+        Publisher obj2 = (Publisher) obj;
 
         return this.id != null ? this.id.equals(obj2.getId()) : obj2.getId()==null;
 
