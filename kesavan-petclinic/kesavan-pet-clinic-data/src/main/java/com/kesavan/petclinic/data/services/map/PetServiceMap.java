@@ -1,11 +1,11 @@
 package com.kesavan.petclinic.data.services.map;
 
 import com.kesavan.petclinic.data.model.Pet;
-import com.kesavan.petclinic.data.services.CrudService;
+import com.kesavan.petclinic.data.services.PetService;
 
 import java.util.Set;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Pet save(Pet Pet) {

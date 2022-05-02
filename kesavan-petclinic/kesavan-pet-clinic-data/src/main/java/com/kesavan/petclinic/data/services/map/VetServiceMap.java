@@ -1,11 +1,11 @@
 package com.kesavan.petclinic.data.services.map;
 
 import com.kesavan.petclinic.data.model.Vet;
-import com.kesavan.petclinic.data.services.CrudService;
+import com.kesavan.petclinic.data.services.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Vet save(Vet vet) {
@@ -30,5 +30,14 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements Crud
     @Override
     public Vet findById(Long id) {
         return super.findById(id);
+    }
+
+    @Override
+    public Vet findByLastName(String lastName) {
+        return this.findAll()
+                .stream()
+                .filter(vet -> vet.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
 }
