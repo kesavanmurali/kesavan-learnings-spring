@@ -3,12 +3,10 @@ package com.kesavan.petclinic.data.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Getter
 @Setter
-public class Vet extends Person{
+public class Speciality extends BaseEntity{
 
-    private Set<Speciality> specialities;
+    private String description;
 
 }
