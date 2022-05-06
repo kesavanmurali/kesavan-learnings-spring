@@ -1,16 +1,31 @@
 package com.kesavan.petclinic.data.services.map;
 
+import com.kesavan.petclinic.data.model.Speciality;
 import com.kesavan.petclinic.data.model.Vet;
+import com.kesavan.petclinic.data.services.SpecialityService;
 import com.kesavan.petclinic.data.services.VetService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialityService specialityService;
 
     @Override
     public Vet save(Vet vet) {
+
+        Set<Speciality> specialities = vet.getSpecialities();
+        specialities.forEach( speciality -> {
+            if(speciality.getId() == null){
+                Speciality savedSpeciality = this.specialityService.save(speciality);
+                speciality.setId(savedSpeciality.getId());
+            }
+        });
+
         return super.save(vet);
     }
 
