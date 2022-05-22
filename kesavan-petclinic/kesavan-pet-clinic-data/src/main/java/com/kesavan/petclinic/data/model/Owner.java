@@ -1,7 +1,6 @@
 package com.kesavan.petclinic.data.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +10,9 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "owners")
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Owner extends Person{
 
     @Column(name = "address")
